@@ -1,58 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+/*eslint-disable*/
+//Lint 끄는 기능
+
+import React, { useState } from 'react';
+// import logo from './logo.svg';
+// import { Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+
+  // let post = '인천 공부 맛집';
+  let [글제목, 글제목변경] = useState(['코딩 공부 추천', 'javascript 공부하는 법', '보기좋은 레이아웃은?']);
+  let [좋아요, 좋아요변경] = useState(0);
+  // document.querySeleter().innerHtml...
+
+  return ( 
+    <div className="App"> 
+        <div className="black_nav">
+          <h4 style={ {color : 'gray', fontSize : '16px'} }>BLOG</h4>
+        </div>
+
+
+        <button onClick={()=>{
+
+          let copy = [...글제목];
+          copy[0] = '보기좋은 레이아웃';
+          글제목변경(copy);
+        }}>글수정</button>
+
+        <div className='list'>
+          <h4>{ 글제목[0] } <span onClick={ () => {좋아요변경(좋아요 + 1) }}>👍</span> {좋아요} </h4>
+          {/* 글제목[인덱싱] */}
+          <p> date </p>
+        </div>
+        <div className='list'>
+          <h4>{ 글제목[1] } <span></span> </h4>
+          <p> date </p>
+        </div>
+        <div className='list'>
+          <h4>{ 글제목[2] } <span></span> </h4>
+          <p> date </p>
+        </div>
+        {/* 컴포넌트 */}
+        <Modal></Modal>
+
     </div>
   );
+}
+
+function Modal (){
+  return (
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+
+    </div>
+  )
 }
 
 export default App;
