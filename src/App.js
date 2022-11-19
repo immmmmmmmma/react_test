@@ -11,6 +11,8 @@ function App() {
   // let post = '인천 공부 맛집';
   let [글제목, 글제목변경] = useState(['코딩 공부 추천', 'javascript 공부하는 법', '보기좋은 레이아웃은?']);
   let [좋아요, 좋아요변경] = useState(0);
+  let [modal, setModal] = useState(false);
+
   // document.querySeleter().innerHtml...
 
   return ( 
@@ -37,11 +39,13 @@ function App() {
           <p> date </p>
         </div>
         <div className='list'>
-          <h4>{ 글제목[2] } <span></span> </h4>
+          <h4 onClick={ ()=>{ setModal(!modal) } } >{ 글제목[2] } </h4>
           <p> date </p>
         </div>
         {/* 컴포넌트 */}
-        <Modal></Modal>
+        { 
+          modal == true ? <Modal></Modal> : null
+        }
 
     </div>
   );
@@ -53,7 +57,6 @@ function Modal (){
       <h4>제목</h4>
       <p>날짜</p>
       <p>상세내용</p>
-
     </div>
   )
 }
