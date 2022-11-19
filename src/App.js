@@ -10,7 +10,7 @@ function App() {
 
   // let post = '인천 공부 맛집';
   let [글제목, 글제목변경] = useState(['코딩 공부 추천', 'javascript 공부하는 법', '보기좋은 레이아웃은?']);
-  let [좋아요, 좋아요변경] = useState(0);
+  let [좋아요, 좋아요변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
 
   // document.querySeleter().innerHtml...
@@ -29,9 +29,8 @@ function App() {
           글제목변경(copy);
         }}>글수정</button>
 
-        <div className='list'>
-          <h4>{ 글제목[0] } <span onClick={ () => {좋아요변경(좋아요 + 1) }}>👍</span> {좋아요} </h4>
-          {/* 글제목[인덱싱] */}
+        {/* <div className='list'>
+          <h4>{ 글제목[0] }</h4>
           <p> date </p>
         </div>
         <div className='list'>
@@ -39,10 +38,29 @@ function App() {
           <p> date </p>
         </div>
         <div className='list'>
-          <h4 onClick={ ()=>{ setModal(!modal) } } >{ 글제목[2] } </h4>
+          <h4>{ 글제목[2] } </h4>
           <p> date </p>
-        </div>
+        </div> */}
         {/* 컴포넌트 */}
+        {
+          글제목.map(function(a, i){
+            return (
+              <div className='list' key={i} >
+              <h4 onClick={ ()=>{ setModal(!modal) } } >
+                { 글제목[i] } 
+                <span onClick={ () => {
+                  let copy = [...좋아요];
+                  copy[i] = copy[i] + 1;
+                  좋아요변경(copy) 
+                  }}>👍</span> {좋아요[i]}
+              </h4>
+              <p> date </p>
+            </div>
+            )
+          })
+        }
+
+
         { 
           modal == true ? <Modal></Modal> : null
         }
